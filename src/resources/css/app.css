@@ -1,11 +1,73 @@
-@import 'tailwindcss';
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap');
+@import "tailwindcss";
 
-@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
-@source '../../storage/framework/views/*.php';
-@source '../**/*.blade.php';
-@source '../**/*.js';
+@reference "tailwindcss";
 
+/* ─── Custom theme tokens ─────────────────────────────────────────── */
 @theme {
-    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-        'Segoe UI Symbol', 'Noto Color Emoji';
+    --font-cairo: 'Cairo', sans-serif;
+
+    --color-brand:      #E8372C;
+    --color-brand-dark: #C0291F;
+    --color-dark:       #111827;
+    --color-surface:    #F8F9FC;
+}
+
+/* ─── Base ────────────────────────────────────────────────────────── */
+@layer base {
+    html {
+        font-family: var(--font-cairo);
+        background-color: var(--color-surface);
+    }
+}
+
+/* ─── Components ──────────────────────────────────────────────────── */
+@layer components {
+
+    .filter-btn {
+        @apply px-4 py-1.5 rounded-full text-sm font-bold border border-gray-200
+               bg-white text-gray-600 transition-all duration-150
+               hover:border-[#E8372C] hover:text-[#E8372C] cursor-pointer;
+    }
+
+    .filter-btn.active {
+        @apply bg-[#E8372C] text-white border-[#E8372C];
+    }
+
+    .page-btn {
+        @apply w-9 h-9 flex items-center justify-center rounded-lg
+               border border-gray-200 font-semibold text-sm text-gray-600
+               transition-all duration-150 cursor-pointer
+               hover:border-[#E8372C] hover:text-[#E8372C];
+    }
+
+    .page-btn.active {
+        @apply bg-[#E8372C] text-white border-[#E8372C];
+    }
+
+    .tag {
+        @apply text-xs font-bold px-2.5 py-0.5 rounded-full;
+    }
+
+    .tag-marketing   { @apply bg-red-50    text-[#E8372C]; }
+    .tag-programming { @apply bg-blue-50   text-blue-600; }
+    .tag-graphics    { @apply bg-green-50  text-green-600; }
+    .tag-engineering { @apply bg-yellow-50 text-yellow-600; }
+    .tag-business    { @apply bg-purple-50 text-purple-600; }
+}
+
+/* ─── Utilities ───────────────────────────────────────────────────── */
+@layer utilities {
+    .animate-slide-up {
+        animation: slideUp 0.5s ease forwards;
+    }
+
+    .shadow-brand {
+        box-shadow: 0 8px 32px rgb(232 55 44 / 0.12);
+    }
+}
+
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
 }
