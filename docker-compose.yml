@@ -8,7 +8,7 @@ services:
       args:
         USER_ID: 1000   # your host UID
         GROUP_ID: 1000  # your host GID
-    container_name: laravel_app
+    container_name: courses_scraper_app
     working_dir: /var/www
     volumes:
       - ./src:/var/www
@@ -17,7 +17,7 @@ services:
 
   web:
     image: nginx:alpine
-    container_name: laravel_web
+    container_name: courses_scraper_web
     ports:
       - "8000:80"
     volumes:
@@ -28,7 +28,7 @@ services:
 
   db:
     image: mysql:8.0
-    container_name: laravel_db
+    container_name: courses_scraper_db
     environment:
     
       MYSQL_ROOT_PASSWORD: root
@@ -43,7 +43,7 @@ services:
 
   redis:
     image: redis:7-alpine
-    container_name: laravel_redis
+    container_name: courses_scraper_redis
     ports:
       - "6379:6379"
     volumes:
